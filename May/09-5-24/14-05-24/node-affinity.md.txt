@@ -1,0 +1,26 @@
+Node Affinity:
+
+Node Affinity is a more imp way to allows you to specify rules about which nodes your pod is eligible to be scheduled on based on the labels of those nodes
+It allows you to specify rules that apply only if certain conditions are met. 
+
+Example:
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod
+spec:
+  containers:
+  - name: my-container
+    image: nginx
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: zone
+            operator: In
+            values:
+            - "us-east-1"
+
+Here,kubernetes will ensure that the pod is only scheduled on nodes labeled with zone: us-east-1

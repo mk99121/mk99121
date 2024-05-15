@@ -1,0 +1,29 @@
+Taint:
+Taints are applied to nodes to repel certain pods. They allow nodes to refuse pods unless the pods have a matching toleration.
+taints are used to prevent certain types of workloads from running on specific nodes
+Use kubectl taint command to apply taints to nodes.include tolerations field in the pod's YAML definition to tolerate specific taints.
+
+kubectl taint nodes node-1 app=non-critical:NoSchedule
+
+
+Tolerations:
+Tolerations are applied to pods and allow them to schedule onto nodes with matching taints. They override the effect of taints.
+
+Example:
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod
+spec:
+  containers:
+  - name: my-container
+    image: nginx
+  tolerations:
+  - key: app
+    operator: Equal
+    value: non-critical
+    effect: NoSchedule
+
+Kubernetes will schedule my-pod onto nodes even if they have the taint app=non-critical:NoSchedule.
+If the pod didt have a toleration matching the taint it would not be scheduled onto nodes with that taint and it will remain in a pending state.
