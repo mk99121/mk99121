@@ -1,0 +1,24 @@
+Concepts covered :
+*Passwordless authentication,Anible inventory and Anible ad-hoc commands.
+
+Passwordless Authentication:
+It will help ansible control node to communicate with the managed nodes without requiring a password input each time to do automation.
+copy the control node private key to the managed node and past it in the .ssh folder authorized_keys
+chmod 600 ~/.ssh/authorized_keys
+chmod 700 ~/.ssh 
+
+In etc sshd-config need to update the file
+vi /etc/ssh/sshd_config
+
+PasswordAuthentication no
+
+Ansible Inventory:
+Ansible inventory is a file that lists the computers and groups of computers that ansible will manage.
+we have to save this file using .yaml extension.
+The inventory file contains the names and IP addresses of the managed nodes.
+default ansible inventory file location will be "/etc/ansible/hosts".
+grouping the servers in the inventory file enables better control over which servers receive specific commands
+
+Anible ad-hoc commands:
+Ad-hoc commands are a simple way to provide instructions to Ansible on the control node.
+Ad hoc commands are useful for simple tasks that can be done with one simple command such as testing connections with instances or listing files in a directory.

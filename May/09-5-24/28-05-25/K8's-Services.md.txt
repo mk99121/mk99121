@@ -2,7 +2,7 @@ Importance of Services in Kubernetes:
 
 Services are very imp component of Kubernetes in production scenarios.
 A Kubernetes Service is an abstraction of pods and it exposes the application into the internet and It enables communication between different parts of your application
-It enables communication between different parts of your application.accessing services using the service name instead of the IP addresses because The IP's keep on changes.
+accessing services using the service name instead of the IP addresses because The IP's keep on changes.
 TYPES OF SERVICES:
 Cluster IP: the application can only be accessed within the Kubernetes cluster.he service provides discovery and load balancing within the cluster.
 
@@ -10,4 +10,10 @@ Node Port:Node port mode allows the application to be accessed within the organi
 
 Load Balancer:Load balancer mode exposes the application to the external world.It provides a public IP address, such as an elastic load balancer IP address on a cloud provider, allowing anyone with internet access to reach the application.
 This type is suitable for applications that need to be accessible globally
+
+Challenges with Load Balancing:
+the load balancing mechanism provided by services which only offer simple round-robin load balancing.
+the cost of using static public IP addresses for load balancing is expensive.
+each load balancer exposes single service to the internet.
+
 
