@@ -5,9 +5,25 @@ terraform {
       source  = "hashicorp/aws"
       version = "~> 5.0"
     }
+    kubernetes = {
+      source = "hashicorp/kubernetes"
+      version = "~> 2.20"
+    }    
+    http = {
+      source = "hashicorp/http"
+      version = "~> 3.3"
+    }
   }
 }
 provider "aws" {
   region = "us-east-2"
-  profile = "ninja"
+ # profile = "ninja"
+}
+provider "http" {
+  # Configuration options
+}
+provider "kubernetes" {
+  host                   = aws_eks_cluster.eks-cluster.endpoint
+  cluster_ca_certificate = base64decode(aws_eks_cluster.eks-cluster.certificate_authority[0].data)
+  token                  = data.aws_eks_cluster_auth.cluster.token
 }

@@ -8,15 +8,15 @@ variable "vpc-cidr" {
 }
 variable "vpc-azs" {
   type = list(string)
-  default = ["us-east-2a", "us-east-2b"]
+  default = ["us-east-2a", "us-east-2b", "us-east-2c"]
 }
 variable "vpc-pvt"{
   type = list(string)
-  default = ["10.0.1.0/24", "10.0.2.0/24"]
+  default = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
 }
 variable "vpc-pub" {
   type = list(string)
-  default = ["10.0.101.0/24", "10.0.102.0/24"]
+  default = ["10.0.101.0/24", "10.0.102.0/24", "10.0.103.0/24"]
 }
 variable "vpc-db" {
   type = list(string)

@@ -11,7 +11,9 @@ output "database_subnets" {
   value = module.vpc.database_subnets
 }
 
-
+output "cluster_token" {
+  value = aws_eks_cluster.eks-cluster.name
+}
 output "endpoint" {
   value = aws_eks_cluster.eks-cluster.endpoint
 }
@@ -36,7 +38,18 @@ output "aws_iam_openid_connect_provider_extract_from_arn" {
   description = "AWS IAM Open ID Connect Provider extract from ARN"
    value = local.aws_iam_oidc_connect_provider_extract_from_arn
 }
-output "irsa_iam_role_arn" {
+/*output "irsa_iam_role_arn" {
   description = "IRSA Demo IAM Role ARN"
   value = aws_iam_role.irsa_iam_role.arn
+}*/
+output "lbc_iam_role_arn" {
+  description = "AWS Load Balancer Controller IAM Role ARN"
+  value = aws_iam_role.lbc_iam_role.arn
+}
+output "lbc_iam_policy_arn" {
+  value = aws_iam_policy.lbc_iam_policy.arn 
+}
+output "lbc_iam_policy" {
+  #value = data.http.lbc_iam_policy.body
+  value = data.http.lbc_iam_policy.response_body
 }
