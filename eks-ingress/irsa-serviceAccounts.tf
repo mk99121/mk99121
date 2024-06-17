@@ -1,5 +1,5 @@
 # Resource: Kubernetes Service Account
-resource "kubernetes_service_account_v1" "irsa_demo_sa" {
+resource "kubernetes_service_account_v1" "aws-lbc" {
   depends_on = [ aws_iam_role_policy_attachment.lbc_iam_role_policy_attach ]
   metadata {
     name = "irsa-demo-sa"
@@ -17,12 +17,12 @@ resource "kubernetes_service_account_v1" "irsa_demo_sa" {
 #
 resource "kubernetes_pod" "iam_role_test" {
   metadata {
-    name      = "iam-role-test"
+    name      = "aws-lbc"
     namespace = "kube-system"
   }
 
   spec {
-    service_account_name = "default"
+    service_account_name = "aws-lbc"
     container {
       name  = "iam-role-test"
       image = "amazon/aws-cli:latest"
