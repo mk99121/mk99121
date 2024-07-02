@@ -1,7 +1,7 @@
 
 # Resource: Create AWS Load Balancer Controller IAM Policy 
 resource "aws_iam_policy" "lbc_iam_policy" {
-  name        = "${var.cluster-name}-AWS-IAMPolicy"
+  name        = "${var.cluster-name}-lbc-IAMPolicy"
   path        = "/"
   description = "ALB IAM Policy"
   #policy = data.http.lbc_iam_policy.body
