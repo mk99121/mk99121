@@ -1,0 +1,50 @@
+Storage class:
+
+1. A StorageClass provides a way for administrators to describe the "classes" of storage they offer.
+2. Here we are offering EBS Storage for EKS Cluster
+EX:
+
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata: 
+  name: ebs-sc
+provisioner: ebs.csi.aws.com
+volumeBindingMode: WaitForFirstConsumer 
+
+Persistant Volume Claim:
+
+
+1.Dynamic volume provisioning allows storage volumes to be created on-demand.
+2.Without dynamic provisioning cluster administrators have to manually make calls to their cloud or storage provider to create new storage volumes,
+and then create PersistentVolume objects to represent them in k8s 
+3. The dynamic provisioning feature eliminates the need for cluster administrators to pre-provision storage. 
+Instead it automatically provisions storage when it is requested by users.
+PVC:Users request dynamically provisioned storage by including a storage class in their PersistentVolumeClaim
+Example:
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ebs-mysql-pv-claim
+spec: 
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: ebs-sc
+  resources: 
+    requests:
+      storage: 4Gi
+	  
+	  
+CONFIG MAP
+1. ConfigMap is an API object used to store non-confidential data in key-value pairs. 
+2. Pods can consume ConfigMaps as environment variables,command-line arguments or as configuration files in a volume.
+Eample:
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: usermanagement-dbcreation-script
+data: 
+  mysql_usermgmt.sql: |-
+    DROP DATABASE IF EXISTS webappdb;
+    CREATE DATABASE webappdb;  
