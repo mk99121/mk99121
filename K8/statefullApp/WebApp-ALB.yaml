@@ -5,7 +5,7 @@ metadata:
   labels: 
     app: usermgmt-webapp
   annotations:
-    service.beta.kubernetes.io/aws-load-balancer-type: alb    # To create Network Load Balancer
+    service.beta.kubernetes.io/aws-load-balancer-type: nlb    # To create Network Load Balancer
 spec:
   type: LoadBalancer # Default - CLB
   selector:
